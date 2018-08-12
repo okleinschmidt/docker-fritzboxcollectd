@@ -13,13 +13,13 @@ TypesDB     "/usr/share/collectd/types.db"
     Import "fritzcollectd"
 
     <Module fritzcollectd>
-        Address "<INSERT FRITZBOX IP>"
+        Address "${FB_IP}"
         Port 49000
 
         # Some performance counters require to authenticate
         # create an user with restricted access (e.g. Lan-only)
-        # User ""
-        # Password ""
+        User "${FB_USER}"
+        Password "${FB_PW}"
 
         Hostname "FritzBox"
         Instance "1"
@@ -30,7 +30,7 @@ TypesDB     "/usr/share/collectd/types.db"
 LoadPlugin "write_graphite"
 <Plugin "write_graphite">
  <Node "Graphite">
-   Host "<GRAPHITE HOST>"
+   Host "${GRAPHITE_HOST}"
    Port "2003"
    Prefix "collectd."
    EscapeCharacter "_"
